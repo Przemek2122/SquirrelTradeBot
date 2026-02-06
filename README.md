@@ -1,8 +1,6 @@
-# Squirrel trade bot
-# This is my personal bot for crypto trading (or more like learning this)
+# Squirrel crypto trade bot
 
-# Pakages list
-# Used on fedora so other distributions are untested
+# Pakages list (tested on fedora)
 gcc-c++ cmake git make ninja-build libcurl-devel websocketpp-devel
 gtest-devel
 
