@@ -1,3 +1,5 @@
+# Created by Przemek2122 @ https://github.com/Przemek2122/SquirrelTradeBot
+
 cmake_minimum_required(VERSION 3.16)
 
 project(bot_project)
@@ -8,8 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Sources for project
 set(SOURCES
     # Do not add Sources/bot.cpp due to gTest
-    Sources/bot_lib.cpp
-    # Add more sources ...
+    Sources/Private/bot_lib.cpp
+        Sources/Public/bot_lib.h
+        # Add more sources ...
 )
 
 # Sources for google test
@@ -18,20 +21,31 @@ set(TEST_SOURCES
     # Add more sources for test
 )
 
+# CMake settings
 cmake_policy(SET CMP0135 NEW)
 include(FetchContent)
-
-# Packages
-find_package(PkgConfig REQUIRED)
-FetchContent_Declare(CPR GIT_REPOSITORY https://github.com/libcpr/cpr.git GIT_TAG 1.11.0)
-FetchContent_MakeAvailable(CPR)
-pkg_check_modules(WEBSOCKETPP REQUIRED websocketpp)
 
 # Bot lib (core logic, no main)
 add_library(bot_lib STATIC ${SOURCES})
 target_include_directories(bot_lib PUBLIC Sources Sources/ThirdParty/json/include ${WEBSOCKETPP_INCLUDE_DIRS})
 target_link_libraries(bot_lib PRIVATE ${CPR_LIBRARIES})
 target_compile_options(bot_lib PRIVATE ${CPR_CFLAGS_OTHER})
+
+# Add CPR
+find_package(PkgConfig REQUIRED)
+FetchContent_Declare(CPR GIT_REPOSITORY https://github.com/libcpr/cpr.git GIT_TAG 1.14.0)
+FetchContent_MakeAvailable(CPR)
+pkg_check_modules(WEBSOCKETPP REQUIRED websocketpp)
+
+# Add nlohmann json
+FetchContent_Declare(json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.11.3
+)
+FetchContent_MakeAvailable(json)
+
+# bot lib links
+target_link_libraries(bot_lib PUBLIC nlohmann_json::nlohmann_json)
 
 # Exe
 add_executable(bot Sources/bot.cpp)    # main() calls lib

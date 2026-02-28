@@ -1,19 +1,11 @@
-#include <cpr/cpr.h>
-#include <iostream>
-#include <nlohmann/json.hpp>
+// Created by Przemek2122 @ https://github.com/Przemek2122/SquirrelTradeBot
+
+#include "Public/bot_lib.h"
 
 int main()
 {
-    cpr::Response r = cpr::Get(cpr::Url{"https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"});
-    if (r.status_code == 200)
-    {
-        auto j = nlohmann::json::parse(r.text);
-        std::cout << "BTC: " << j["price"] << std::endl;
-    }
-    else
-    {
-        std::cout << "Error: " << r.status_code << std::endl;
-    }
+    Bot bot;
+    bot.Start();
 
     return 0;
 }
