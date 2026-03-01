@@ -9,10 +9,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Sources for project
 set(SOURCES
-    # Do not add Sources/bot.cpp due to gTest
     Sources/Private/bot_lib.cpp
-        Sources/Public/bot_lib.h
-        # Add more sources ...
+    Sources/Public/bot_lib.h
+    Sources/Private/CryptoCurrency.cpp
+    Sources/Public/CryptoCurrency.h
+    Sources/Private/CryptoCurrencyManager.cpp
+    Sources/Public/CryptoCurrencyManager.h
+
+    # Do not add *Sources/bot.cpp* due to gTest
+    # Add more sources ...
 )
 
 # Sources for google test

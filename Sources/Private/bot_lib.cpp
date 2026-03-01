@@ -1,5 +1,4 @@
 // Created by Przemek2122 @ https://github.com/Przemek2122/SquirrelTradeBot
-// Main file for bot. Used by project and test.
 
 #include "Public/bot_lib.h"
 
@@ -35,7 +34,7 @@ void Bot::Start()
 
             const long diff_ms = std::chrono::duration_cast<std::chrono::milliseconds>(RequestEndTime - RequestStartTime).count();
             std::cout << "Time of request: " << diff_ms << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(250 - diff_ms));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000 - diff_ms));
         }
     }
     catch (std::exception& e)

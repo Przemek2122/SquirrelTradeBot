@@ -7,5 +7,7 @@ int main()
     Bot bot;
     bot.Start();
 
+    // Entry point moved to allow tests
+
     return 0;
 }

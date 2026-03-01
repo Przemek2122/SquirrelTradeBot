@@ -5,10 +5,7 @@
 Used on fedora so other distributions are untested
 
 gcc-c++ cmake git make ninja-build meson 
-libcurl-devel websocketpp-devel gtest-devel libunistring-devel
-
-## Download submodules
-git submodule update --init --recursive
+libcurl-devel websocketpp-devel gtest-devel libunistring-devel libunistring-devel
 
 ## Build
 cmake -B build -G Ninja
