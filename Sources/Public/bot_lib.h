@@ -2,7 +2,6 @@
 
 #pragma once
 #include <memory>
-#include "CryptoCurrencyManager.h"
 
 /**
  * Bot entry point,
@@ -12,8 +11,5 @@ class Bot
 {
 public:
     void Start();
-
-private:
-    std::unique_ptr<CryptoCurrencyManager> CryptoCurrencyManagerPtr;
 
 };
