@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(bot_project)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Sources for project
@@ -13,8 +13,10 @@ set(SOURCES
     Sources/Public/bot_lib.h
     Sources/Private/CryptoCurrency.cpp
     Sources/Public/CryptoCurrency.h
+        Sources/ThreadUtils.cpp
+        Sources/ThreadUtils.h
 
-    # Do not add *Sources/bot.cpp* due to gTest
+        # Do not add *Sources/bot.cpp* due to gTest
     # Add more sources ...
 )
 

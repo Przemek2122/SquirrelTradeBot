@@ -4,6 +4,7 @@
 
 #include "Public/CryptoCurrency.h"
 #include <nlohmann/json.hpp>
+#include "ThreadUtils.h"
 #include "cpr/response.h"
 #include "cpr/session.h"
 
@@ -15,8 +16,12 @@ CryptoCurrency::CryptoCurrency(const std::string& InURL, const std::string& InSy
 
 void CryptoCurrency::StartThreaded(const std::stop_token& st)
 {
+    ThreadUtils::PinToCore(1);
+
     //while (!st.stop_requested())
     {
+
+        // @TODO: Try is extremely slow in case of stack unvinding but for learning it's perfect
         try
         {
             cpr::Session session;
@@ -47,4 +52,9 @@ void CryptoCurrency::StartThreaded(const std::stop_token& st)
             std::cout << "Error: " << e.what() << std::endl;
         }
     }
+}
+
+std::expected<double, int> CryptoCurrency::GetBalance() noexcept
+{
+
 }
